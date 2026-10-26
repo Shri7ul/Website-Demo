@@ -4,8 +4,10 @@ import { PageHeader } from "@/components/page-header";
 import { StatusChip } from "@/components/status-chip";
 import { PhotoPlate } from "@/components/plate";
 import { timeline, excludedAchievements } from "@/content/timeline";
+import { competition } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/journey" },
   title: "Journey",
   description:
     "A verified chronology of the UIU Rescue Rover Team, with future goals labelled as goals and achievements belonging to other teams excluded.",
@@ -69,7 +71,7 @@ export default function JourneyPage() {
               <ul className="mt-4 space-y-2">
                 {excludedAchievements.map((a) => (
                   <li key={a} className="flex gap-3">
-                    <span aria-hidden="true" className="meta mt-1 text-steel">
+                    <span aria-hidden="true" className="meta mt-1 text-steel-mid">
                       ×
                     </span>
                     <span className="meta text-steel-deep">{a}</span>
@@ -95,7 +97,7 @@ export default function JourneyPage() {
               sizes="(max-width: 1024px) 100vw, 38vw"
               caption={
                 <>
-                  <span className="block font-semibold text-ink">
+                  <span className="plate-strong">
                     Team and rover at a competition venue
                   </span>
                   <span className="mt-0.5 block">
@@ -113,23 +115,40 @@ export default function JourneyPage() {
               </div>
               <div className="px-4 py-4">
                 <p className="body text-steel-deep">
-                  RoboCup Rescue 2026 was listed as the team&apos;s target, in
-                  Incheon, South Korea, July 2026. As of 26 October 2026 that date
-                  has passed, the team&apos;s site still calls it upcoming, and no
-                  participation or result record has been published.
+                  RoboCup Rescue 2026 was listed as the team&apos;s target. The
+                  event itself ran {competition.dates} at {competition.venue}, and
+                  the league has closed its 2026 season. No entry list, result
+                  sheet or announcement naming URRT has been published, so this
+                  stays a target rather than a participation record.
                 </p>
+                <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
+                  <dt className="meta text-steel-mid">Event</dt>
+                  <dd className="meta text-steel-deep">{competition.eventStatus}</dd>
+                  <dt className="meta text-steel-mid">URRT</dt>
+                  <dd className="meta text-steel-deep">{competition.teamStatus}</dd>
+                </dl>
                 <p className="meta mt-3 text-steel-deep">
-                  Owner: competition coordinator. Until confirmed, this stays a
-                  target on every page.
+                  Owner: competition coordinator. Until a record is published,
+                  this stays a target on every page.
                 </p>
-                <a
-                  href="https://2026.robocup.org/leagues/robocuprescue/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-prose meta mt-3 inline-block"
-                >
-                  RoboCup Rescue league ↗
-                </a>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+                  <a
+                    href={competition.eventSource}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-prose meta inline-block"
+                  >
+                    RoboCup 2026 ↗
+                  </a>
+                  <a
+                    href={competition.leagueSource}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-prose meta inline-block"
+                  >
+                    Rescue league ↗
+                  </a>
+                </div>
               </div>
             </div>
           </aside>

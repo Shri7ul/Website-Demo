@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/contact-form";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description:
     "Contact the UIU Rescue Rover Team at United International University, Dhaka.",
@@ -65,7 +66,7 @@ export default function ContactPage() {
                 <div key={row.k} className="border-b border-steel py-4">
                   <dt className="meta text-steel-deep">{row.k}</dt>
                   <dd className="ui mt-1 text-ink">{row.v}</dd>
-                  <dd className="meta mt-1 text-steel">{row.n}</dd>
+                  <dd className="meta mt-1 text-steel-mid">{row.n}</dd>
                 </div>
               ))}
             </dl>

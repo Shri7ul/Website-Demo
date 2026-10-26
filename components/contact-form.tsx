@@ -33,6 +33,7 @@ export function ContactForm({
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+  const [sentHref, setSentHref] = useState("");
 
   const validate = () => {
     const next: Record<string, string> = {};
@@ -42,6 +43,13 @@ export function ContactForm({
     if (message.trim().length < 12)
       next.message = "Please give us at least a sentence of context.";
     return next;
+  };
+
+  const compose = () => {
+    const body = `${message}\n\n—\n${name}\n${email}`;
+    return `mailto:${site.email}?subject=${encodeURIComponent(
+      `[${subject}] via website`
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   const onSubmit = (e: React.FormEvent) => {
@@ -54,12 +62,10 @@ export function ContactForm({
       return;
     }
 
-    const body = `${message}\n\n—\n${name}\n${email}`;
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(
-      `[${subject}] via website`
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
+    const href = compose();
+    setSentHref(href);
     setSent(true);
+    window.location.href = href;
   };
 
   const field = (k: string) =>
@@ -160,13 +166,27 @@ export function ContactForm({
 
       <div className="mt-6 flex flex-wrap items-center gap-4">
         <button type="submit" className="btn btn-primary">
-          {sent ? "Open mail client again" : "Compose message"}
+          {sent ? "Compose message again" : "Compose message"}
         </button>
         <p className="meta text-steel-deep">
           Opens your mail client with the message filled in. Nothing is stored on
           this site.
         </p>
       </div>
+
+      {sent ? (
+        <p className="meta mt-3 text-steel-deep">
+          Nothing opened?{" "}
+          <a href={sentHref} className="link-prose" data-testid="mailto-fallback">
+            Open the prepared message
+          </a>{" "}
+          or write to{" "}
+          <a href={`mailto:${site.email}`} className="link-prose">
+            {site.email}
+          </a>
+          .
+        </p>
+      ) : null}
 
       <p aria-live="polite" className="sr-only">
         {sent ? "Your mail client should now be open with the message." : ""}

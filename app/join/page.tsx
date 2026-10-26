@@ -6,6 +6,7 @@ import { PhotoPlate } from "@/components/plate";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/join" },
   title: "Join the team",
   description:
     "URRT recruits across mechanical, electrical and software & autonomous disciplines at United International University.",
@@ -52,7 +53,7 @@ export default function JoinPage() {
               {disciplines.map((d, i) => (
                 <li key={d.name} className="border-b border-steel py-6">
                   <div className="flex items-baseline gap-3">
-                    <span className="meta tabular text-steel">
+                    <span className="meta tabular text-steel-mid">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="title">{d.name}</h3>
@@ -87,7 +88,7 @@ export default function JoinPage() {
               sizes="(max-width: 1024px) 100vw, 38vw"
               caption={
                 <>
-                  <span className="block font-semibold text-ink">
+                  <span className="plate-strong">
                     Team members in the workshop
                   </span>
                   <span className="mt-0.5 block">

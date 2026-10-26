@@ -6,6 +6,7 @@ import { researchThemes } from "@/content/research";
 import { experiments } from "@/content/experiments";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/research" },
   title: "Research",
   description:
     "The research questions behind the URRT rescue rovers, the methods used, and the publication status — currently: none published.",
@@ -42,7 +43,7 @@ export default function ResearchPage() {
             <li key={t.slug} className="border-b border-steel py-8">
               <div className="grid gap-6 lg:grid-cols-12">
                 <div className="lg:col-span-1">
-                  <span className="meta tabular text-steel">
+                  <span className="meta tabular text-steel-mid">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -65,13 +66,13 @@ export default function ResearchPage() {
                   <p className="meta text-steel-deep">Linked experiments</p>
                   <p className="ui mt-1">
                     {t.experiments.length === 0 ? (
-                      <span className="text-steel">None registered</span>
+                      <span className="text-steel-mid">None registered</span>
                     ) : (
                       t.experiments.length
                     )}
                   </p>
                   <p className="meta mt-3 text-steel-deep">Publications</p>
-                  <p className="ui mt-1 text-steel">None</p>
+                  <p className="ui mt-1 text-steel-mid">None</p>
                 </div>
 
                 <div className="lg:col-span-2">
@@ -100,7 +101,7 @@ export default function ResearchPage() {
             slot exists below.
           </p>
           <div className="mt-4 border border-steel bg-paper px-4 py-3">
-            <p className="ui text-steel">— no manuscripts registered</p>
+            <p className="ui text-steel-mid">— no manuscripts registered</p>
           </div>
         </div>
       </div>

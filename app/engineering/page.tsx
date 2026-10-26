@@ -6,6 +6,7 @@ import { robots } from "@/content/robots";
 import { experiments } from "@/content/experiments";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/engineering" },
   title: "Engineering",
   description:
     "AEGIS subsystem breakdown and the design decisions behind it, with the layers the team has not published marked as undocumented.",
@@ -167,7 +168,7 @@ export default function EngineeringPage() {
             <StackFigure />
           </div>
           <figcaption className="plate-caption">
-            <span className="block font-semibold text-ink">
+            <span className="plate-strong">
               Figure 1 — subsystem stack
             </span>
             <span className="mt-0.5 block">
@@ -183,7 +184,7 @@ export default function EngineeringPage() {
             <li key={l.n} className="border-b border-steel py-8">
               <div className="grid gap-6 lg:grid-cols-12">
                 <div className="lg:col-span-1">
-                  <span className="meta tabular text-steel">{l.n}</span>
+                  <span className="meta tabular text-steel-mid">{l.n}</span>
                 </div>
                 <div className="lg:col-span-4">
                   <h2 className="display-3">{l.name}</h2>
@@ -199,7 +200,7 @@ export default function EngineeringPage() {
                 </div>
                 <div className="lg:col-span-3">
                   <p className="meta text-steel-deep">Evidence</p>
-                  <p className="meta mt-1 text-steel">{l.evidence}</p>
+                  <p className="meta mt-1 text-steel-mid">{l.evidence}</p>
                 </div>
               </div>
             </li>
@@ -256,7 +257,7 @@ export default function EngineeringPage() {
               "No build log with dated revisions.",
             ].map((g) => (
               <li key={g} className="flex gap-3">
-                <span aria-hidden="true" className="meta mt-1 text-steel">
+                <span aria-hidden="true" className="meta mt-1 text-steel-mid">
                   —
                 </span>
                 <span className="body text-steel-deep">{g}</span>

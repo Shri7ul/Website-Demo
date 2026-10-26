@@ -22,6 +22,12 @@ export async function generateMetadata({
   return {
     title: robot.name,
     description: robot.summary,
+    alternates: { canonical: `/robots/${robot.slug}` },
+    openGraph: {
+      title: robot.name,
+      description: robot.summary,
+      url: `/robots/${robot.slug}`,
+    },
   };
 }
 
@@ -61,7 +67,7 @@ export default async function RobotPage({
               label={robot.statusLabel}
             />
             <span className="meta text-steel-deep">{robot.designation}</span>
-            <span className="meta text-steel">{robot.version}</span>
+            <span className="meta text-steel-mid">{robot.version}</span>
           </div>
         }
       />
@@ -90,7 +96,7 @@ export default async function RobotPage({
                 className={i === 0 ? "md:col-span-2 lg:col-span-2" : ""}
                 caption={
                   <>
-                    <span className="block font-semibold text-ink">
+                    <span className="plate-strong">
                       Plate {i + 1}
                     </span>
                     <span className="mt-0.5 block">{g.caption}</span>
@@ -177,7 +183,7 @@ export default async function RobotPage({
                   </th>
                   <td
                     className={`ui tabular px-4 py-3 align-top ${
-                      s.value === "Not yet documented" ? "text-steel" : "text-ink"
+                      s.value === "Not yet documented" ? "text-steel-mid" : "text-ink"
                     }`}
                   >
                     {s.value === "Not yet documented" ? "—" : s.value}
@@ -191,7 +197,7 @@ export default async function RobotPage({
           </table>
         </div>
 
-        <p className="meta mt-3 text-steel">
+        <p className="meta mt-3 text-steel-mid">
           Source: rescuerover.uiu.ac.bd/projects.html. Transcribed 26 October
           2026.
         </p>
@@ -212,7 +218,7 @@ export default async function RobotPage({
                 "No authentic 3D model or CAD export has been released.",
               ].map((c) => (
                 <li key={c} className="flex gap-3 border-b border-steel/50 pb-3">
-                  <span aria-hidden="true" className="meta mt-1 text-steel">
+                  <span aria-hidden="true" className="meta mt-1 text-steel-mid">
                     —
                   </span>
                   <span className="body text-steel-deep">{c}</span>
@@ -243,7 +249,7 @@ export default async function RobotPage({
             body="No dated build log has been published for this platform. If you maintain the build records, they can be added here as a versioned table."
             caption={
               <>
-                <span className="block font-semibold text-ink">
+                <span className="plate-strong">
                   Build log — absent
                 </span>
                 <span className="mt-0.5 block">

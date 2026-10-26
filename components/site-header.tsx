@@ -25,6 +25,9 @@ export function SiteHeader() {
     if (!sheet) return;
 
     const previouslyFocused = document.activeElement as HTMLElement | null;
+    // Captured here so the cleanup below closes over a stable node rather than
+    // reading `.current` after React may have detached it.
+    const trigger = triggerRef.current;
     document.documentElement.classList.add("no-scroll");
 
     const focusables = () =>
@@ -63,7 +66,7 @@ export function SiteHeader() {
       document.removeEventListener("keydown", onKeyDown);
       document.documentElement.classList.remove("no-scroll");
       // Return focus to the trigger
-      (previouslyFocused ?? triggerRef.current)?.focus();
+      (previouslyFocused ?? trigger)?.focus();
     };
   }, [open]);
 
@@ -73,11 +76,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-steel bg-paper">
       <div className="shell flex h-16 items-center justify-between gap-4 md:h-20">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5"
-          aria-label={`${site.name} — home`}
-        >
+        <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/assets/brand/urrt-logo.png"
             alt=""

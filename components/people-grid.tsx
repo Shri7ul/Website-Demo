@@ -86,7 +86,7 @@ export function PeopleGrid({ members }: { members: Member[] }) {
                 <figcaption className="mt-2">
                   <p className="ui font-semibold leading-snug">{m.name}</p>
                   <p className="meta text-steel-deep">{m.role}</p>
-                  <p className="meta mt-0.5 text-steel">{m.id}</p>
+                  <p className="meta mt-0.5 text-steel-mid">{m.id}</p>
                 </figcaption>
               </figure>
             </li>

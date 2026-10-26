@@ -134,6 +134,7 @@ the surface each token is actually used on (WCAG 2.2 relative luminance).
 | `ink`         | `#101820` | Primary text on paper; surface for dark sections                       | 16.25:1 on paper                                          |
 | `paper`       | `#F5F4EF` | Default surface                                                        | —                                                         |
 | `steel`       | `#687580` | Borders, rules, large secondary text, inactive marks                   | 4.29:1 on paper — **large text and non-text only**        |
+| `steel-mid`   | `#5C6873` | Small meta text: codes, dates, tertiary labels                         | 5.18:1 on paper; 4.69:1 on paper-sunk                     |
 | `steel-deep`  | `#46525C` | Secondary body text on paper                                           | 7.27:1 on paper                                           |
 | `steel-light` | `#97A3AD` | Secondary text on ink                                                  | 6.95:1 on ink                                             |
 | `lime`        | `#B7F36B` | Accent: marks, verified state, focus ring on dark, key figures on dark | 13.67:1 on ink; **1.19:1 on paper — never text on paper** |

@@ -3,7 +3,7 @@ import { Archivo, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { site } from "@/content/site";
+import { site, siteUrl } from "@/content/site";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -20,7 +20,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rescuerover.uiu.ac.bd"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${site.shortName} — ${site.name}`,
     template: `%s — ${site.shortName}`,
@@ -33,7 +33,25 @@ export const metadata: Metadata = {
     description: site.description,
     type: "website",
     locale: "en_GB",
-    images: [{ url: "/assets/events/team-competition-rover.png", width: 1388, height: 858 }],
+    siteName: site.name,
+    url: "/",
+    images: [
+      {
+        url: "/assets/events/team-competition-rover.png",
+        width: 1388,
+        height: 858,
+        alt: "The UIU Rescue Rover Team with a rover at a competition venue.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} (${site.shortName})`,
+    description: site.description,
+  },
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/icon.png" }],
   },
   robots: { index: true, follow: true },
 };

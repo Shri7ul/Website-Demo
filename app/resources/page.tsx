@@ -6,6 +6,7 @@ import { PhotoPlate } from "@/components/plate";
 import { assetManifest } from "@/content/assets";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/resources" },
   title: "Resources",
   description:
     "Publications, code, data and media from the UIU Rescue Rover Team — including an honest record of what has not been published.",
@@ -135,7 +136,7 @@ export default function ResourcesPage() {
                   sizes="(max-width: 640px) 100vw, 32vw"
                   caption={
                     <>
-                      <span className="block font-semibold text-ink">AEGIS</span>
+                      <span className="plate-strong">AEGIS</span>
                       <span className="mt-0.5 block">
                         Workshop, undated. Source: projects.html
                       </span>
@@ -150,7 +151,7 @@ export default function ResourcesPage() {
                   sizes="(max-width: 640px) 100vw, 32vw"
                   caption={
                     <>
-                      <span className="block font-semibold text-ink">
+                      <span className="plate-strong">
                         Zugbee X1
                       </span>
                       <span className="mt-0.5 block">
@@ -167,7 +168,7 @@ export default function ResourcesPage() {
                   sizes="(max-width: 640px) 100vw, 32vw"
                   caption={
                     <>
-                      <span className="block font-semibold text-ink">
+                      <span className="plate-strong">
                         Team cap
                       </span>
                       <span className="mt-0.5 block">
@@ -184,7 +185,7 @@ export default function ResourcesPage() {
                   sizes="(max-width: 640px) 100vw, 32vw"
                   caption={
                     <>
-                      <span className="block font-semibold text-ink">
+                      <span className="plate-strong">
                         Team and rover, campus
                       </span>
                       <span className="mt-0.5 block">

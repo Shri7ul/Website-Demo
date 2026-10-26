@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useMemo, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Billboard, OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -22,26 +22,82 @@ const LIME_TRACK = "#93c95a";
 const LIME_DEEP = "#3f6b12";
 const PAPER = "#f5f4ef";
 
+const CAMERA_HOME: [number, number, number] = [2.15, 1.5, 2.35];
+const TARGET_HOME: [number, number, number] = [0, 0.4, 0];
+
 type Props = {
   selected: SubsystemKey | null;
   onSelect: (key: SubsystemKey) => void;
   anchors: Record<SubsystemKey, [number, number, number]>;
+  /** Bumping this returns the camera to its opening framing. */
+  resetKey: number;
+  /** Called when the GPU drops the context, so the UI can swap in the fallback. */
+  onContextLost: () => void;
 };
 
-export function RoverScene({ selected, onSelect, anchors }: Props) {
+/** Restores the opening framing whenever `resetKey` changes. */
+function CameraRig({ resetKey }: { resetKey: number }) {
+  const controls = useThree((s) => s.controls) as
+    | { target: THREE.Vector3; update: () => void }
+    | null;
+  const camera = useThree((s) => s.camera);
+
+  useEffect(() => {
+    if (!controls) return;
+    camera.position.set(...CAMERA_HOME);
+    controls.target.set(...TARGET_HOME);
+    controls.update();
+    // resetKey is the trigger; the control and camera objects are stable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resetKey]);
+
+  return null;
+}
+
+/**
+ * WebGL context loss is recoverable in theory and not in practice on most
+ * mobile drivers. Rather than leave a frozen canvas, we hand control back to
+ * the accessible fallback that already lists every subsystem as text.
+ */
+function ContextGuard({ onLost }: { onLost: () => void }) {
+  const gl = useThree((s) => s.gl);
+
+  useEffect(() => {
+    const el = gl.domElement;
+    const handler = (e: Event) => {
+      e.preventDefault();
+      onLost();
+    };
+    el.addEventListener("webglcontextlost", handler, false);
+    return () => el.removeEventListener("webglcontextlost", handler, false);
+  }, [gl, onLost]);
+
+  return null;
+}
+
+export function RoverScene({
+  selected,
+  onSelect,
+  anchors,
+  resetKey,
+  onContextLost,
+}: Props) {
   return (
-      <Canvas
-        camera={{ position: [2.15, 1.5, 2.35], fov: 38 }}
-        dpr={[1, 1.8]}
-        shadows
-        gl={{ antialias: true, alpha: false }}
-        // The canvas is a supplement to the tablist, which carries the real
-        // interaction. Screen readers use the tablist, so the canvas is hidden.
-        aria-hidden="true"
-        style={{ background: PAPER, touchAction: "pan-y" }}
-      >
+    <Canvas
+      camera={{ position: CAMERA_HOME, fov: 38 }}
+      dpr={[1, 1.8]}
+      shadows
+      gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+      // The canvas is a supplement to the tablist, which carries the real
+      // interaction. Screen readers use the tablist, so the canvas is hidden.
+      aria-hidden="true"
+      style={{ background: PAPER, touchAction: "pan-y" }}
+    >
       <color attach="background" args={[PAPER]} />
       <fog attach="fog" args={[PAPER, 8, 16]} />
+
+      <ContextGuard onLost={onContextLost} />
+      <CameraRig resetKey={resetKey} />
 
       <ambientLight intensity={0.5} />
       <directionalLight
@@ -84,7 +140,7 @@ export function RoverScene({ selected, onSelect, anchors }: Props) {
         maxPolarAngle={Math.PI / 2.15}
         enableDamping
         dampingFactor={0.08}
-        target={[0, 0.4, 0]}
+        target={TARGET_HOME}
       />
     </Canvas>
   );
@@ -288,6 +344,10 @@ function ConceptualRover({
   const cursor = (on: boolean) => {
     document.body.style.cursor = on ? "pointer" : "auto";
   };
+
+  // A pointer resting on the model when the section unmounts would otherwise
+  // leave the whole document showing a pointer cursor.
+  useEffect(() => () => void (document.body.style.cursor = "auto"), []);
 
   return (
     <group position={[0, 0, 0]}>
@@ -569,6 +629,23 @@ function Marker({
 
   return (
     <Billboard>
+      {/* Hit area. The visible marker is ~20px across on a laptop; without a
+          larger invisible target it is unusable by touch and hard by mouse. */}
+      <mesh
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          setCursor(true);
+        }}
+        onPointerOut={() => setCursor(false)}
+      >
+        <circleGeometry args={[0.2, 24]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+      </mesh>
+
       <mesh
         onClick={(e) => {
           e.stopPropagation();

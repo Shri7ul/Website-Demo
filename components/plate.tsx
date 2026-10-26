@@ -49,7 +49,7 @@ export function PhotoPlate({
       </div>
       <figcaption className="plate-caption">
         {caption}
-        {note ? <span className="mt-1 block text-steel">{note}</span> : null}
+        {note ? <span className="plate-note">{note}</span> : null}
       </figcaption>
     </figure>
   );
@@ -67,7 +67,7 @@ export function FigurePlate({
       <div className={`plate-media ${aspect}`}>{children}</div>
       <figcaption className="plate-caption">
         {caption}
-        {note ? <span className="mt-1 block text-steel">{note}</span> : null}
+        {note ? <span className="plate-note">{note}</span> : null}
       </figcaption>
     </figure>
   );
@@ -84,7 +84,7 @@ export function TablePlate({
       <div className="plate-media overflow-x-auto">{children}</div>
       <figcaption className="plate-caption">
         {caption}
-        {note ? <span className="mt-1 block text-steel">{note}</span> : null}
+        {note ? <span className="plate-note">{note}</span> : null}
       </figcaption>
     </figure>
   );
@@ -113,7 +113,7 @@ export function AbsentPlate({
       </div>
       <figcaption className="plate-caption">
         {caption}
-        {note ? <span className="mt-1 block text-steel">{note}</span> : null}
+        {note ? <span className="plate-note">{note}</span> : null}
       </figcaption>
     </figure>
   );

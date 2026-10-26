@@ -6,6 +6,7 @@ import { PhotoPlate } from "@/components/plate";
 import { members, advisors } from "@/content/team";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/people" },
   title: "People",
   description:
     "The 2026 URRT roster of 15 members across mechanical, electrical and software, plus the team's three advisors and director.",
@@ -95,7 +96,7 @@ export default function PeoplePage() {
                 </div>
                 <div className="mt-3 border-t border-steel/50 pt-3">
                   <p className="meta text-steel-deep">Research interests</p>
-                  <p className="meta mt-1 text-steel">
+                  <p className="meta mt-1 text-steel-mid">
                     {a.interests.join(" · ")}
                   </p>
                 </div>

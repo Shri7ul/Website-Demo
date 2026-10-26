@@ -70,6 +70,8 @@ export function RoverExplorer({
 }) {
   const [active, setActive] = useState<SubsystemKey>("locomotion");
   const [canRender3D, setCanRender3D] = useState<boolean | null>(null);
+  const [glLost, setGlLost] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
   const [announcement, setAnnouncement] = useState("");
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -115,14 +117,17 @@ export function RoverExplorer({
   const Fallback = (
     <div className="flex h-full w-full flex-col justify-center bg-paper-sunk p-5 md:p-7">
       <p className="meta uppercase tracking-[0.08em] text-steel-deep">
-        3D unavailable
+        {glLost ? "3D stopped" : "3D unavailable"}
       </p>
       <p className="title mt-2 text-ink">
-        This browser cannot render the interactive assembly
+        {glLost
+          ? "The graphics context was lost"
+          : "This browser cannot render the interactive assembly"}
       </p>
       <p className="body mt-2 max-w-prose text-steel-deep">
-        WebGL is unavailable, so the 3D view is switched off. Every subsystem is
-        still listed and described below — nothing is lost.
+        {glLost
+          ? "The browser dropped the WebGL context, usually to reclaim memory. Reload the page to restore the view."
+          : "WebGL is unavailable, so the 3D view is switched off. Every subsystem is still listed and described beside it — nothing is lost."}
       </p>
     </div>
   );
@@ -137,12 +142,14 @@ export function RoverExplorer({
               <div className="grid h-full w-full place-items-center bg-paper-sunk">
                 <p className="meta text-steel-deep">Preparing the 3D assembly…</p>
               </div>
-            ) : canRender3D ? (
+            ) : canRender3D && !glLost ? (
               <SceneBoundary fallback={Fallback}>
                 <RoverScene
                   selected={active}
                   onSelect={select}
                   anchors={anchors}
+                  resetKey={resetKey}
+                  onContextLost={() => setGlLost(true)}
                 />
               </SceneBoundary>
             ) : (
@@ -153,10 +160,22 @@ export function RoverExplorer({
             <span className="block">
               {modelLabel} — interactive assembly of {robotName}.
             </span>
-            <span className="mt-1 block text-steel">
+            <span className="plate-note">
               Drag to orbit, scroll to zoom. Select a numbered marker or use the
               subsystem list. Dimensions are not to scale.
             </span>
+            {canRender3D && !glLost ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setResetKey((k) => k + 1);
+                  setAnnouncement("Camera returned to the opening view.");
+                }}
+                className="meta mt-2 underline decoration-1 underline-offset-4 hover:decoration-2"
+              >
+                Reset view
+              </button>
+            ) : null}
           </figcaption>
         </figure>
       </div>

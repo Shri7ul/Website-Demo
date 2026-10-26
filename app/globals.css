@@ -10,6 +10,10 @@
   --color-paper: #f5f4ef;
   --color-paper-sunk: #ebe9e1;
   --color-steel: #687580;
+  /* `steel` is 4.29:1 on paper — DESIGN.md restricts it to rules, borders and
+     large text. Small meta text needs a compliant step between steel and
+     steel-deep: 5.18:1 on paper, 4.69:1 on paper-sunk. */
+  --color-steel-mid: #5c6873;
   --color-steel-deep: #46525c;
   --color-steel-light: #97a3ad;
   --color-lime: #b7f36b;
@@ -391,6 +395,28 @@
     font-size: 0.8125rem;
     line-height: 1.4;
     color: var(--color-steel-deep);
+  }
+
+  /* Caption internals inherit the surface they sit on. Hard-coding ink here
+     would leave a caption on an `on-ink` plate unreadable. */
+  .plate-caption .plate-strong {
+    display: block;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .plate-caption .plate-note {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-steel-mid);
+  }
+
+  .on-ink .plate-caption .plate-strong {
+    color: var(--color-paper);
+  }
+
+  .on-ink .plate-caption .plate-note {
+    color: var(--color-steel-light);
   }
 
   .on-ink .plate {

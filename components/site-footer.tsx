@@ -26,7 +26,7 @@ export function SiteFooter() {
 
             <p className="body mt-5 max-w-sm text-steel-light">
               Student-built rescue robotics. Two prototypes, documented
-              honestly, targeting RoboCup Rescue 2026.
+              honestly, built toward the RoboCup Rescue league.
             </p>
 
             <address className="meta mt-6 not-italic text-steel-light">

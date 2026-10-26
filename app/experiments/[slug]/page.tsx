@@ -18,7 +18,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const e = getExperiment(slug);
   if (!e) return { title: "Experiment not found" };
-  return { title: `${e.code} · ${e.title}`, description: e.question };
+  return {
+    title: `${e.code} · ${e.title}`,
+    description: e.question,
+    alternates: { canonical: `/experiments/${e.slug}` },
+    openGraph: {
+      title: `${e.code} · ${e.title}`,
+      description: e.question,
+      url: `/experiments/${e.slug}`,
+    },
+  };
 }
 
 const statusMap = {
@@ -58,7 +67,7 @@ export default async function ExperimentPage({
             <span className="meta text-steel-deep">
               {e.robot} · {e.subsystem}
             </span>
-            <span className="meta tabular text-steel">{e.code}</span>
+            <span className="meta tabular text-steel-mid">{e.code}</span>
           </div>
         }
       />
@@ -81,7 +90,7 @@ export default async function ExperimentPage({
                   key={i}
                   className="flex gap-4 border-b border-steel/50 py-3"
                 >
-                  <span className="meta tabular mt-1 shrink-0 text-steel">
+                  <span className="meta tabular mt-1 shrink-0 text-steel-mid">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="body text-steel-deep">{step}</span>
@@ -122,7 +131,7 @@ export default async function ExperimentPage({
                   body="This record has no numeric result. The figure below is the schema that will be plotted once logs and a trial count exist — it is not data."
                   caption={
                     <>
-                      <span className="block font-semibold text-ink">
+                      <span className="plate-strong">
                         Figure 1 — absent
                       </span>
                       <span className="mt-0.5 block">

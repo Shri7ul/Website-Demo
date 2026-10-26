@@ -6,8 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "node qa/tests.mjs",
+    "audit": "node qa/audit.mjs",
+    "lighthouse": "node qa/lighthouse.mjs",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
@@ -19,11 +23,18 @@
     "three": "^0.180.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/eslintrc": "^3.3.7",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/node": "^22.18.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@types/three": "^0.180.0",
+    "axe-core": "^4.14.0",
+    "chrome-launcher": "^1.2.2",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.28",
+    "lighthouse": "^13.5.0",
     "playwright": "^1.64.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.14",

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { ExperimentExplorer } from "@/components/experiment-explorer";
@@ -9,6 +8,7 @@ export const metadata: Metadata = {
   title: "Experiments",
   description:
     "Registered experiments on the URRT rescue rovers, with protocol, setup, evidence and an honest statement of which measurements exist.",
+  alternates: { canonical: "/experiments" },
 };
 
 export default function ExperimentsPage() {
@@ -33,13 +33,7 @@ export default function ExperimentsPage() {
       />
 
       <div className="shell section">
-        <Suspense
-          fallback={
-            <p className="meta text-steel-deep">Loading experiment records…</p>
-          }
-        >
-          <ExperimentExplorer experiments={experiments} />
-        </Suspense>
+        <ExperimentExplorer experiments={experiments} />
 
         <div className="mt-14 border border-dashed border-steel bg-paper-sunk p-6 md:p-8">
           <h2 className="display-3">Why there are no charts</h2>

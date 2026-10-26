@@ -6,9 +6,10 @@ import { ContactForm } from "@/components/contact-form";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/collaborate" },
   title: "Collaborate or sponsor",
   description:
-    "Work with the UIU Rescue Rover Team: research collaboration, components, laboratory access and travel support for RoboCup Rescue 2026.",
+    "Work with the UIU Rescue Rover Team: research collaboration, components, laboratory access and travel support for competition entry.",
 };
 
 const supporters = [
@@ -34,7 +35,7 @@ const needs = [
   {
     title: "Travel to competition",
     detail:
-      "RoboCup Rescue 2026 is the stated target. Moving a team and a robot internationally is the largest single cost in the plan.",
+      "Moving a team and a robot to an international league is the largest single cost in the plan. URRT named RoboCup Rescue 2026 as its target; that event has run, and the team has not published a participation record. Travel support is what makes the next attempt possible.",
   },
   {
     title: "Research collaboration",
@@ -68,7 +69,7 @@ export default function CollaboratePage() {
               {needs.map((n, i) => (
                 <li key={n.title} className="border-b border-steel py-6">
                   <div className="flex items-baseline gap-3">
-                    <span className="meta tabular text-steel">
+                    <span className="meta tabular text-steel-mid">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="title">{n.title}</h3>

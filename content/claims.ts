@@ -170,15 +170,15 @@ export const claims: Claim[] = [
   },
   {
     id: "comp-001",
-    text: "URRT will compete at RoboCup Rescue 2026 in Incheon, South Korea, July 2026.",
-    status: "planned",
+    text: "URRT will compete at RoboCup Rescue 2026 in Incheon, South Korea, 30 June – 6 July 2026.",
+    status: "needs-review",
     evidence:
-      "Stated as a target on the homepage and project page. As of 26 October 2026 the date has passed and no participation or result record has been published. Note the team's site spells the city 'Icheon'.",
-    source: "rescuerover.uiu.ac.bd/index.html",
+      "Stated as a target on the team's homepage and project page. The event itself is verified: RoboCup 2026 ran 30 June – 6 July 2026 at Songdo Convensia, Incheon (robocup.org/events/80), and the rescue league closed its 2026 season on 6 July with 23 teams. No entry list, result sheet or announcement naming URRT has been published, so participation is unconfirmed. Note the team's site spells the city 'Icheon'.",
+    source: "rescuerover.uiu.ac.bd/index.html · robocup.org/events/80 · rrl.robocup.org",
     owner: "Competition coordinator",
-    reviewed: "2026-10-26",
+    reviewed: "2026-10-27",
     publicTreatment:
-      "Labelled as a target on /journey and /robots, never as participation or a result. Awaiting confirmation.",
+      "Labelled as a target on /journey and /robots, never as participation or a result. The event date is stated in the past tense; team participation remains unconfirmed.",
   },
   {
     id: "comp-002",

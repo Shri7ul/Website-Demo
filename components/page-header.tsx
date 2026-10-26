@@ -34,7 +34,7 @@ export function PageHeader({
                   </span>
                 )}
                 {i < breadcrumb.length - 1 && (
-                  <span aria-hidden="true" className="text-steel">
+                  <span aria-hidden="true" className="text-steel-mid">
                     /
                   </span>
                 )}

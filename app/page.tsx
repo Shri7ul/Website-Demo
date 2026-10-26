@@ -9,7 +9,6 @@ import { RoverExplorer } from "@/components/rover-explorer";
 import { EvidenceList } from "@/components/evidence-list";
 import { PeopleGrid } from "@/components/people-grid";
 import { StatusChip } from "@/components/status-chip";
-import { Reveal } from "@/components/reveal";
 import { PhotoPlate, FigurePlate } from "@/components/plate";
 import { robots } from "@/content/robots";
 import { members } from "@/content/team";
@@ -18,6 +17,7 @@ import { timeline } from "@/content/timeline";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   title: "When humans cannot enter, robots go first",
   description: site.description,
 };
@@ -129,7 +129,7 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 caption={
                   <>
-                    <span className="block font-semibold text-ink">
+                    <span className="plate-strong">
                       AEGIS, prototype 02
                     </span>
                     <span className="mt-0.5 block">
@@ -193,7 +193,7 @@ export default function HomePage() {
               <FigurePlate
                 caption={
                   <>
-                    <span className="block font-semibold text-ink">
+                    <span className="plate-strong">
                       Section through a collapsed floor
                     </span>
                     <span className="mt-0.5 block">
@@ -275,7 +275,7 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 caption={
                   <>
-                    <span className="block font-semibold text-ink">
+                    <span className="plate-strong">
                       AEGIS on the timber obstacle rig
                     </span>
                     <span className="mt-0.5 block">
@@ -489,8 +489,8 @@ export default function HomePage() {
               </h2>
               <p className="body-lg mt-5 max-w-[48ch] text-steel-light">
                 URRT recruits across mechanical, electrical and software. The team
-                also needs laboratory access, components and travel support for
-                RoboCup Rescue 2026.
+                also needs laboratory access, components and travel support to
+                compete at league level.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">

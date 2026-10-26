@@ -9,6 +9,11 @@ build/
 *.tsbuildinfo
 .DS_Store
 workbuddy-ai/
-qa/
+
+# QA harness: the scripts are versioned because `npm run test:e2e` and
+# `npm run audit` depend on them. Their screenshots and generated reports
+# (~90 MB of PNG/JSON) are not.
+qa/**/*.png
+qa/*/
 
 .

@@ -7,6 +7,7 @@ import { assetManifest, missingAssets } from "@/content/assets";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/content-status" },
   title: "Content status",
   description:
     "The claim ledger and asset manifest behind this site: what is verified, what needs review, what is planned, and what is unsupported.",
@@ -90,7 +91,7 @@ export default function ContentStatusPage() {
               <tbody>
                 {claims.map((c) => (
                   <tr key={c.id} className="border-t border-steel/50 align-top">
-                    <td className="meta tabular px-3 py-3 text-steel">{c.id}</td>
+                    <td className="meta tabular px-3 py-3 text-steel-mid">{c.id}</td>
                     <td className="px-3 py-3">
                       <p className="ui text-ink">{c.text}</p>
                       <p className="meta mt-1 text-steel-deep">
@@ -103,7 +104,7 @@ export default function ContentStatusPage() {
                     <td className="meta px-3 py-3 text-steel-deep">
                       {c.evidence}
                       {c.source && (
-                        <span className="mt-1 block text-steel">{c.source}</span>
+                        <span className="mt-1 block text-steel-mid">{c.source}</span>
                       )}
                     </td>
                     <td className="meta px-3 py-3 text-steel-deep">{c.owner}</td>
@@ -151,7 +152,7 @@ export default function ContentStatusPage() {
               <tbody>
                 {assetManifest.map((a) => (
                   <tr key={a.assetId} className="border-t border-steel/50 align-top">
-                    <td className="meta tabular px-3 py-2.5 text-steel">
+                    <td className="meta tabular px-3 py-2.5 text-steel-mid">
                       {a.assetId}
                     </td>
                     <td className="px-3 py-2.5">

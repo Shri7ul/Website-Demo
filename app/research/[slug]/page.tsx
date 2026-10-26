@@ -18,7 +18,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const t = getResearchTheme(slug);
   if (!t) return { title: "Theme not found" };
-  return { title: t.title, description: t.question };
+  return {
+    title: t.title,
+    description: t.question,
+    alternates: { canonical: `/research/${t.slug}` },
+    openGraph: { title: t.title, description: t.question, url: `/research/${t.slug}` },
+  };
 }
 
 export default async function ResearchThemePage({
@@ -96,7 +101,7 @@ export default async function ResearchThemePage({
                         href={`/experiments/${e.slug}`}
                         className="block px-4 py-3 transition-colors hover:bg-paper-sunk"
                       >
-                        <span className="meta tabular text-steel">{e.code}</span>
+                        <span className="meta tabular text-steel-mid">{e.code}</span>
                         <span className="ui mt-0.5 block font-medium text-ink">
                           {e.title}
                         </span>

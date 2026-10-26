@@ -24,15 +24,6 @@ export const timeline: TimelineEvent[] = [
     kind: "milestone",
   },
   {
-    date: "March",
-    sortKey: "2026-03",
-    title: "Team description paper",
-    detail:
-      "The team listed preparation of a Team Description Paper and the competition participation form. The year is not stated on the source page.",
-    status: "needs-review",
-    kind: "milestone",
-  },
-  {
     date: "January 2026",
     sortKey: "2026-01",
     title: "AEGIS listed as the current platform",
@@ -42,11 +33,20 @@ export const timeline: TimelineEvent[] = [
     kind: "milestone",
   },
   {
-    date: "July 2026",
-    sortKey: "2026-07",
-    title: "RoboCup Rescue 2026, Incheon",
+    date: "March 2026",
+    sortKey: "2026-03",
+    title: "Team description paper",
     detail:
-      "The team's stated target. As of 26 October 2026 this date has passed; the team's site still describes it as upcoming and no participation or result record has been published. Awaiting confirmation from the competition coordinator.",
+      "The team listed preparation of a Team Description Paper and the competition participation form. The year is not stated on the source page.",
+    status: "needs-review",
+    kind: "milestone",
+  },
+  {
+    date: "30 June – 6 July 2026",
+    sortKey: "2026-07",
+    title: "RoboCup Rescue 2026, Incheon — event concluded",
+    detail:
+      "The competition the team named as its target ran at Songdo Convensia, Incheon, Republic of Korea, and the league has since closed its 2026 season. No entry list, result sheet or announcement naming URRT has been published, so participation is unconfirmed and no result is claimed here.",
     status: "needs-review",
     kind: "goal",
   },

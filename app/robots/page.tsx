@@ -6,6 +6,7 @@ import { PhotoPlate } from "@/components/plate";
 import { robots } from "@/content/robots";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/robots" },
   title: "Robots",
   description:
     "Two rescue rover prototypes from the UIU Rescue Rover Team: Zugbee X1 (completed January 2025) and AEGIS (in development).",
@@ -53,7 +54,7 @@ export default function RobotsPage() {
               <article className="grid gap-8 lg:grid-cols-12 lg:gap-10">
                 <div className={`lg:col-span-6 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="meta tabular text-steel">{r.version}</span>
+                    <span className="meta tabular text-steel-mid">{r.version}</span>
                     <StatusChip
                       status={
                         r.status === "completed" ? "verified" : "needs-review"
@@ -76,7 +77,7 @@ export default function RobotsPage() {
                         <dd
                           className={`ui mt-0.5 ${
                             s.value === "Not yet documented"
-                              ? "text-steel"
+                              ? "text-steel-mid"
                               : "text-ink"
                           }`}
                         >
@@ -104,7 +105,7 @@ export default function RobotsPage() {
                     priority={i === 0}
                     caption={
                       <>
-                        <span className="block font-semibold text-ink">
+                        <span className="plate-strong">
                           {r.name}
                         </span>
                         <span className="mt-0.5 block">{r.gallery[0].caption}</span>
