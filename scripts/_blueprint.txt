@@ -1,0 +1,251 @@
+===== PAGE 1 =====
+UIU RESCUE ROVER
+Complete Website Redesign
+Blueprint
+From first loading frame to final footer: story, interaction, visual system, asset recovery, claims, engineering
+content, research evidence, accessibility and launch.
+Version 1.0 | 26 October 2026 | Implementation specification / creative proposal
+The experience in one sentence
+A visitor enters a real rescue-robotics mission, discovers the people and engineering behind the machines,
+explores authentic prototypes, sees measurable evidence, and leaves with a clear next action.
+Non-negotiable outcome
+• No generic AI landing page. No fabricated robot photos, team logos, performance numbers, awards,
+publications or disaster deployments.
+• Recover real media and official branding from the existing site before rebuilding hero and project pages.
+• A cinematic, interactive homepage is the front door; research and technical pages remain readable, precise
+and source-linked.
+• All claims must be categorized as verified, awaiting review, planned, or unsupported before publication.
+Basis: user-provided DESIGN.md (Field Dossier, Archivo / Source Serif, paper + charcoal + lime, plate captions, keyboard access, one
+authored motion moment). This blueprint proposes changes where the current implementation lacked authentic assets and visual
+impact.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 1
+===== PAGE 2 =====
+01 / The first 5 seconds: loading and entry
+0–0.5 s — immediate first paint
+Show the real official logo/wordmark, navigation shell, meaningful background and hero headline immediately.
+No blocking splash screen, fake percentage counter, terminal boot sequence or forced intro. Preload only
+critical fonts and the hero poster image. Preserve a stable layout to avoid visual jumping.
+0.5–2 s — cinematic hero resolves
+A real AEGIS or Zugbee X1 photograph fills 55–70% of the hero area (or an approved team video with a static
+poster). The hero copy is already readable. A subtle fade of image detail is allowed; never hide primary content
+behind animation. If no suitable authentic image is available, use a typographic editorial hero with an honest,
+labelled technical figure rather than an invented rover.
+First screen — precise content
+• Brand: actual UIU Rescue Rover logo; university attribution secondary.
+• Headline proposal: “When humans cannot enter, robots go first.” This is aspirational positioning, not a claim
+of operational deployment.
+• Supporting line: “Designing and testing robotic systems for challenging search-and-rescue environments.”
+• Primary CTA: Explore our robots. Secondary CTA: See our experiments.
+• Quiet cue: Scroll to explore. Keep navigation visible but unobtrusive.
+Performance constraints
+Use an optimized responsive poster, local media where permitted, optional muted/looping video only after
+interaction or when bandwidth allows. Respect reduced-motion and save-data settings. Never autoplay audio.
+Test on midrange Android and slow mobile networks.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 2
+===== PAGE 3 =====
+02 / Homepage: scene-by-scene storyboard
+01. THE MISSION
+Dark cinematic opening; authentic rover close-up; one bold headline; two calls to action. Interaction: subtle
+reveal, no scroll hijacking.
+02. THE HUMAN PROBLEM
+Editorial sequence showing real rescue challenges: rubble, access, visibility, communications. Use sourced
+imagery/diagrams, not fabricated real missions. Interaction: tap challenges to reveal engineering implications.
+03. THE FIRST PROTOTYPE
+Zugbee X1 origin: what the team wanted to learn, what was built, what changed. Real photos + caption +
+dated milestones. Interaction: scrub verified build stages.
+04. THE EVOLUTION
+Transition to AEGIS only where chronology is documented. Before/after component comparison, design
+trade-offs and changes. Interaction: click annotated hotspots.
+05. INSIDE THE MACHINE
+Mechanical, power, sensing, communication, control and autonomy layers. Interactive annotated photo/SVG
+with accessible keyboard tabs. Every component has actual status and evidence.
+06. BUILT / TESTED / MEASURED
+Show selected real experiments: methodology, conditions, trials, results and failures. Filter by subsystem and
+robot. Link to full records and data.
+07. THE PEOPLE
+Human-centered photography and honest team contributions; advisor attribution and verified roles.
+Interaction: filter by discipline, not gimmicky 3D flipping cards.
+08. THE JOURNEY
+Chronological verified events, competition participation, build milestones, failures and future goals. Never
+auto-convert past dates into success claims.
+09. JOIN THE WORK
+Collaboration, recruitment, sponsors, open resources. One concise primary CTA and clear contacts; no fake
+sponsor logos.
+10. THE FOOTER
+Official branding, direct page links, social links only when verified, contact, copyright, accessibility,
+last-updated and content corrections link.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 3
+===== PAGE 4 =====
+03 / Visual and interaction direction
+Visual grammar
+• Hero and evidence climax: charcoal cinematic surfaces. Research and long-form content: warm paper
+surfaces. Avoid alternating every section mechanically.
+• Palette starting point: #101820 charcoal, #F5F4EF warm paper, #B7F36B lime accent, #46525C secondary
+ink. Validate contrast.
+• Typography: Archivo for display/UI; Source Serif 4 for editorial body, per supplied DESIGN.md. Use the serif
+selectively; avoid dense paragraphs in the hero.
+• Large authentic photography with disciplined crops and factual captions. Editorial grids, asymmetry,
+restrained rules, no endless identical cards.
+• Use real team logo and official visual assets. Do not redraw an unofficial logo as if official.
+Purposeful interactions
+• Prototype timeline: accessible slider/step controls + scroll-linked visual progression; static chronological
+fallback.
+• Robot explorer: annotated real image or SVG with click, keyboard, touch; details panel with component role,
+specs, limitations and source.
+• Experiment explorer: searchable filters, shareable URL state, comparison charts only with real data,
+download links when permitted.
+• Engineering story: before/after changes, design trade-off tabs, failure-analysis reveals; each interaction adds
+information.
+• Motion: mostly 120–420 ms transitions, transform/opacity, no infinite animations or forced scrolling.
+What to avoid
+No stock photos masquerading as UIU robots; no generic tracked chassis in the hero; no invented live
+telemetry; no unverified numerical counters; no public “10/11 claims under review” dashboard; no heavy
+WebGL just to appear modern.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 4
+===== PAGE 5 =====
+04 / Asset recovery and migration: mandatory first
+sprint
+Sources to inspect
+Start with https://rescuerover.uiu.ac.bd/index.html and crawl discoverable internal pages, including project,
+member, advisor, contact, event and sponsor pages. Use MarkCrawl for content inventory, plus HTML
+inspection / browser rendering for lazy-loaded images, CSS backgrounds, srcset, video embeds, SVGs and
+favicons.
+Required asset manifest
+Field Meaning
+asset_id Stable identifier
+original_url Exact URL on the source site
+source_page Page where discovered
+subject AEGIS / Zugbee X1 / member / event / logo
+license_or_permission Reuse authorization / pending review
+local_path Production asset destination
+caption_and_alt Factual caption and accessible description
+status verified / review / rejected
+Priority retrieval
+• P0: official logo, favicon, actual rover hero photograph and project-gallery images.
+• P1: team and advisor portraits, workshop/testing footage, competition photos and original captions.
+• P2: sponsor marks, publications, diagrams, technical documentation, approved video embeds.
+Validate actual HTTP response, MIME type, dimensions, image decoding and identity. Deduplicate by file hash;
+preserve originals where allowed and create responsive derivatives. If media cannot be recovered, document
+the failure and request the files from the team. Never silently substitute unrelated imagery.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 5
+===== PAGE 6 =====
+05 / Information architecture and page contracts
+Route Must contain
+/ Complete narrative and clear next actions
+/robots Prototype comparison, evidence-backed specifications
+/robots/[slug] Gallery, architecture, version, constraints, changelog
+/research Research questions, methods, publications/status
+/research/[slug] Research overview, linked experiments and citations
+/experiments Filterable experiment index with real data
+/experiments/[slug] Protocol, setup, trials, metrics, failures, assets
+/engineering Subsystem breakdown and design decisions
+/journey Verified timeline, participation vs results
+/people Team roles, contributions and advisors
+/resources Publications, code, data, media and reuse terms
+/join /collaborate /contact Actionable forms and verified contact details
+Relationships
+Robot → subsystem → design decision → experiment → result → evidence file; member → verified role →
+contribution; competition → participation → outcome. Reuse a structured content model rather than duplicating
+facts across pages.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 6
+===== PAGE 7 =====
+06 / Claims: public trust and internal review
+Claim policy
+• VERIFIED: source evidence checked by a responsible team owner. Publicly display with appropriate
+citation/date.
+• NEEDS REVIEW: do not display as a confident factual statement; request verification internally.
+• PLANNED: label explicitly as goal, prototype intention or future work, never achieved capability.
+• UNSUPPORTED: remove from publication until evidence exists.
+High-risk claims to audit
+Claim type Required evidence / treatment
+Robot autonomy Demonstration conditions, operator involvement, repeatable tests
+Victim detection Dataset, protocol, false positives/negatives, limitations
+Rescue readiness Deployment certification or field validation; otherwise avoid
+Success rate / test hours Raw logs, definition, trial count, dates
+Awards / rankings Official organizer results and correct team attribution
+Publications DOI, venue, status; submitted ≠ accepted
+Team size / members Current roster owner, last verification
+Partners / sponsors Permission to use marks and correct relationship
+Example content record
+Claim ID: aegis-mobility-001 | Text: “AEGIS traversed obstacle type X under condition Y” | Evidence: test video
++ dated protocol + CSV | Trials: N | Owner: mechanical lead | Reviewed: YYYY-MM-DD | Status: verified. Never
+fabricate X, Y or N.
+Public vs internal
+The public website should show source-backed facts and limitations. An internal admin view can show claim
+counts, owners and outstanding reviews. Do not place editorial backlog numbers in the homepage hero or
+footer.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 7
+===== PAGE 8 =====
+07 / Research credibility: experiment detail template
+Research question
+Precise falsifiable question, why it matters, related robot/subsystem.
+Method and setup
+Hardware revision, firmware/software versions, calibration, terrain, environmental conditions, operator role.
+Protocol
+Steps, inclusion criteria, stopping rule, baseline, number of trials, success definition.
+Results
+Raw measurements, summary statistics, uncertainty, plots and relevant failures; no invented values.
+Evidence
+Original video, logs, code, dataset, photos, schematic and downloadable report where approved.
+Interpretation
+What results support; what they do not support; confounders and generalization limits.
+Reproducibility
+Configuration files, dataset schema, dates, contributor and revision history.
+Dashboard guardrails
+A chart renders only when verified numeric data exists. Empty datasets show “No validated measurements
+published” with an explanation, not a decorative fake graph. Label simulation, replay and real robot telemetry
+distinctly.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 8
+===== PAGE 9 =====
+08 / Implementation, QA and acceptance criteria
+Recommended stack
+Next.js + TypeScript, Tailwind or consistent design tokens, MDX for initially developer-maintained content,
+versioned JSON/CSV for experiments, Motion for limited transitions, optional React Three Fiber only after a
+genuine 3D asset and clear interaction need. Use GitHub Actions for builds, lint, links and content validation.
+Build sequence
+• Sprint 0: crawl old site, recover official logo/media, make asset and claim manifests. No final hero before this.
+• Sprint 1: visual direction, storyboards, mobile/desktop prototypes, team approval.
+• Sprint 2: homepage and core navigation with authentic media, real responsive behavior.
+• Sprint 3: robot pages, prototype timeline, annotated robot explorer.
+• Sprint 4: research/experiment schemas, verified records, resource pages, people and journey.
+• Sprint 5: content review, browser QA, accessibility, performance, SEO, redirects and launch.
+Launch gates
+• Every visible photograph correctly identified and permitted; logo is authentic.
+• All major claims checked or explicitly excluded; no fabricated statistics or achievements.
+• All navigation and CTAs work; no dead buttons; no broken images.
+• Mobile, tablet and desktop tested; keyboard/touch and reduced-motion work.
+• Production build succeeds; basic security and form validation checked.
+• Lighthouse and real-device performance measured; image and video payload reviewed.
+• Existing URL redirects and rollback plan prepared; ownership for ongoing updates assigned.
+Ownership and maintenance
+Project lead approves project status; research lead reviews technical claims; team coordinator maintains
+people; competition coordinator maintains events; site maintainer manages deployment. Quarterly content
+audit, and immediate updates after verified major milestones.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 9
+===== PAGE 10 =====
+09 / Final creative acceptance checklist
+FIRST FRAME
+Is the team unmistakably recognizable? Is the hero a real asset, or an honestly labelled alternative?
+STORY
+Can a new visitor explain the mission, prototype evolution, test evidence and team after scrolling?
+INTERACTION
+Does every animation or click teach something, and does it work on touch and keyboard?
+RESEARCH
+Can a skeptical researcher trace major claims to methods, results and sources?
+TRUST
+Are future goals separated from completed work and other teams’ achievements?
+DESIGN
+Is the page memorable without relying on stock photos, fake metrics, gradients or generic cards?
+OPERATIONS
+Can team members keep the website current without a developer rewriting every page?
+The exact deliverables to request from the coding
+agent
+• Source-site crawl report and asset manifest with verified image/logo files.
+• Desktop and mobile wireframes for all ten homepage scenes.
+• Working Next.js implementation with the real media integrated.
+• Robot explorer, prototype timeline and experiment explorer with accessible controls.
+• Content claim ledger, structured experiment schema and editorial review process.
+• Screenshots, QA report, production build results, deployment/rollback instructions.
+This is a design and implementation specification, not a claim that original media has already been downloaded or that any particular
+robot performance has been verified.
+UIU RESCUE ROVER | REDESIGN BLUEPRINT | CONCEPT / NOT VERIFIED TEAM FACTS 10
