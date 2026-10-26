@@ -1,7 +1,7 @@
 # QA report
 
 **Date:** 27 October 2026
-**Build under test:** `next build` → 27 prerendered routes, served by `next start -p 4311`
+**Commit under test:** `d3253d7` — `next build` → 27 prerendered routes, served by `next start -p 4311`
 **Browser:** Playwright Chromium 1248 (headless), Windows
 **Node:** 22.22.2 · **Next:** 15.5.28 · **React:** 19.1.0
 
@@ -193,27 +193,36 @@ Lighthouse 12 via `chrome-launcher`, against the local production build.
 Mobile profile: 412 × 823, DPR 1.75, simulated throttling
 (150 ms RTT, 1 638 kbps, 4× CPU slowdown). Desktop: 1350 × 940, no throttling.
 
+Final run, on the committed build (`d3253d7`):
+
 | Route | Profile | Perf | A11y | Best practices | SEO | LCP | CLS | TBT | FCP |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `/` | mobile | **98** | **100** | **100** | **100** | 2.3 s | 0 | 30 ms | 1.5 s |
+| `/` | mobile | **97** | **100** | **100** | **100** | 2.5 s | 0 | 30 ms | 1.5 s |
 | `/` | desktop | **100** | **100** | **100** | **100** | 0.6 s | 0 | 0 ms | 0.4 s |
-| `/robots/aegis` | mobile | **99** | **100** | **100** | **100** | 2.1 s | 0 | 30 ms | 1.4 s |
+| `/robots/aegis` | mobile | **98** | **100** | **100** | **100** | 2.3 s | 0 | 30 ms | 1.4 s |
 | `/robots/aegis` | desktop | **100** | **100** | **100** | **100** | 0.5 s | 0 | 0 ms | 0.3 s |
 | `/experiments` | mobile | **99** | **100** | **100** | **100** | 2.0 s | 0.016 | 30 ms | 1.4 s |
 | `/experiments` | desktop | **100** | **100** | **100** | **100** | 0.5 s | 0 | 0 ms | 0.3 s |
-| `/people` | mobile | **100** | **100** | **100** | **100** | 1.5 s | 0 | 30 ms | 0.8 s |
+| `/people` | mobile | **100** | **100** | **100** | **100** | 1.6 s | 0 | 30 ms | 0.8 s |
 | `/people` | desktop | **100** | **100** | **100** | **100** | 0.5 s | 0 | 0 ms | 0.3 s |
-| `/journey` | mobile | **99** | **100** | **100** | **100** | 2.0 s | 0 | 40 ms | 1.4 s |
+| `/journey` | mobile | **98** | **100** | **100** | **100** | 2.4 s | 0 | 30 ms | 1.4 s |
 | `/journey` | desktop | **100** | **100** | **100** | **100** | 0.5 s | 0 | 0 ms | 0.3 s |
 
 Targets were 90 / 95 / 95 / 95. Every run cleared every target on both profiles.
 Full JSON per run in `qa/lighthouse/`.
 
+**Mobile Performance varies between runs.** Three runs of the same build gave
+mobile Performance of 97–100, with LCP moving between 1.9 s and 2.5 s and the
+score following it. Nothing changed in the build between them; this is the noise
+floor of simulated throttling on a shared machine. The table above is the last
+run, not the best one. Accessibility, Best Practices and SEO were 100 on every
+route in every run, which is the part that is actually stable.
+
 **Conditions, stated honestly.** These are localhost measurements on a fast
 machine. Real-world mobile scores on the Netlify host will be lower — the
 simulated throttling approximates a mid-tier phone on 4G, but it cannot model
 CDN cold-start, TLS setup, or an actual radio. Expect mobile Performance in the
-low-to-mid 90s rather than 98–100.
+low-to-mid 90s rather than 97–100.
 
 **The one non-zero CLS** is `/experiments` on mobile at 0.016, well inside the
 0.1 "good" band. It comes from the webfont swap on the first paint of a long
@@ -307,7 +316,7 @@ looks exactly like one.
 | 4 | Three.js and interactive experiences | **PASS (with a documented limit)** | Real R3F scene, orbit, zoom, marker selection, tablist sync, camera reset, context-loss fallback, no-WebGL fallback. **Model is conceptual, not authentic — see §9.** |
 | 5 | Responsive behaviour | **PASS** | 21 routes × 7 widths, 0 overflow; screenshots at 390/834/1440 |
 | 6 | Accessibility | **PASS with caveats** | axe 0 violations on 22 routes; 10 keyboard assertions pass. **No screen-reader session — see §3.3.** |
-| 7 | Performance and stability | **PASS** | Lighthouse 98–100 mobile, 100 desktop; CLS ≤ 0.016; TBT ≤ 40 ms; image hang fixed |
+| 7 | Performance and stability | **PASS** | Lighthouse 97–100 mobile across three runs, 100 desktop; CLS ≤ 0.016; TBT ≤ 30 ms; image hang fixed |
 | 8 | SEO and metadata | **PASS** | Unique titles, per-page canonical, absolute OG, `robots.txt`, `sitemap.xml`, noindex only where intended |
 | 9 | Navigation, recruitment, contact | **PASS** | All CTAs resolve; contact form validates, composes a real `mailto:`, offers a fallback; no fake success claim |
 | 10 | Testing, documentation, deployment readiness | **PASS on testing and docs; BLOCKED on deployment** | 4 runnable suites committed; 4 reports written. **Live site still serves the old build — §7.** |

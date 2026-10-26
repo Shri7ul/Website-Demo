@@ -9,7 +9,9 @@ import { writeFileSync, mkdirSync } from "node:fs";
 
 const BASE = process.argv[2] || "http://localhost:4311";
 const ROUTES = process.argv.slice(3);
-const TARGETS = ROUTES.length ? ROUTES : ["/", "/robots/aegis", "/experiments", "/people"];
+const TARGETS = ROUTES.length
+  ? ROUTES
+  : ["/", "/robots/aegis", "/experiments", "/people", "/journey"];
 
 const CHROME = chromium.executablePath();
 mkdirSync("qa/lighthouse", { recursive: true });
